@@ -1,5 +1,9 @@
+import dotenv from 'dotenv'
 import fetch from 'node-fetch'
 import { writeFileSync } from 'fs'
+
+// Load .env files
+dotenv.config()
 
 // Environment settings
 const api_base = process.env.API_BASE
