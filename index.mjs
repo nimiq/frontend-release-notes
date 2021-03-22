@@ -100,6 +100,8 @@ async function main() {
     const testnet_releases = []
 
     for (const release of [...wallet_releases, ...hub_releases, ...keyguard_releases]) {
+        if (release.message.includes('[exclude-release]')) continue
+
         if (release.env === 'test') {
             testnet_releases.push(release)
         } else {
