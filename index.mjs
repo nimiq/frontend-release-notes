@@ -69,7 +69,7 @@ async function get_tags(project_path, token) {
 function toRelease(tag, app) {
     const version = tag.name.split('-').find(part => part.startsWith('v'))
     const date = new Date(tag.commit.authored_date).toJSON()
-    const message = tag.commit.message.split('\n').filter(line => line && !line.startsWith('Nimiq')).join('\n')
+    const message = tag.commit.message.split('\n').filter(line => !line.startsWith('Nimiq ')).join('\n')
     const env = tag.name.includes('test') ? 'test' : 'main'
 
     return {
