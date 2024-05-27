@@ -6,3 +6,7 @@ Generates release notes for Nimiq frontend apps from messages of tagged deployme
 
 * [Mainnet Release Notes](https://nimiq-frontend-release-notes.netlify.app/mainnet_releases.json)
 * [Testnet Release Notes](https://nimiq-frontend-release-notes.netlify.app/testnet_releases.json)
+
+> **Important**
+>
+> The build requires Project Access Tokens on the `Developer` level and with `read_api` permission.

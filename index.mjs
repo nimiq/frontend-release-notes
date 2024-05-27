@@ -57,7 +57,12 @@ async function get_tags(project_path, token) {
         headers: {
             'Authorization': `Bearer ${token}`,
         },
-    }).then(response => response.json())
+    })
+    .then(async response => {
+        if (!response.ok) throw new Error(await response.text())
+        return response.json()
+    })
+    .catch(error => console.error(error))
 }
 
 /**
