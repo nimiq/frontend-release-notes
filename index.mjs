@@ -1,3 +1,4 @@
+// @ts-check
 import dotenv from 'dotenv'
 import fetch from 'node-fetch'
 import { writeFileSync } from 'fs'
@@ -15,7 +16,7 @@ const keyguard_token = process.env.KEYGUARD_TOKEN
  * @typedef {{
  *      message: string,
  *      name: string,
- *      protected: boolean,,
+ *      protected: boolean,
  *      release: string | null,
  *      target: string,
  *      commit: {
