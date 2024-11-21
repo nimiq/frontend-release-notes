@@ -87,17 +87,25 @@ function toRelease(tag, app) {
     }
 }
 
+const IGNORED_TAGS = [
+    "v2.0.3-1-main-soeren", // Hub
+    "v3.0.5-1-main-soeren", // Wallet
+]
+
 async function main() {
     console.log('Fetching Wallet tags...')
     const wallet_releases = (await get_tags('deployment/wallet', wallet_token))
+        .filter(tag => !IGNORED_TAGS.includes(tag.name))
         .map(tag => toRelease(tag, 'Wallet'))
 
     console.log('Fetching Hub tags...')
     const hub_releases = (await get_tags('deployment/hub', hub_token))
+        .filter(tag => !IGNORED_TAGS.includes(tag.name))
         .map(tag => toRelease(tag, 'Hub'))
 
     console.log('Fetching Keyguard tags...')
     const keyguard_releases = (await get_tags('deployment/keyguard', keyguard_token))
+        .filter(tag => !IGNORED_TAGS.includes(tag.name))
         .map(tag => toRelease(tag, 'Keyguard'))
 
     /** @type {Release[]} */
