@@ -75,7 +75,11 @@ async function get_tags(project_path, token) {
 function toRelease(tag, app) {
     const version = tag.name.split('-').find(part => part.startsWith('v'))
     const date = new Date(tag.commit.authored_date).toJSON()
-    const message = tag.commit.message.split('\n').filter(line => !line.startsWith('Nimiq ')).join('\n')
+    let message = tag.commit.message
+    // Remove App name & version header from tag description
+    if (message.split('\n')[0].match(/^Nimiq (Wallet|Hub|Keyguard) v\d+\.\d+\.\d+$/)) {
+        message = message.split('\n').slice(2).join('\n')
+    }
     const env = tag.name.includes('test') ? 'test' : 'main'
 
     return {
